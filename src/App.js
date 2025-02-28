@@ -10,7 +10,6 @@ function App() {
 
   return (
     <div>
-      Books Count: {books.length}
       <BookCreate onCreate={createBook} />
     </div>
   );
