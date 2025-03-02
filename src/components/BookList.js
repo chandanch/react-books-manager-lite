@@ -1,13 +1,14 @@
-import BookShow from './BookShow';
+import React, { useMemo } from "react";
+import BookShow from "./BookShow";
 
-function BookList({ books, onDelete, onEdit }) {
-  const renderedBooks = books.map((book) => {
-    return (
-      <BookShow onEdit={onEdit} onDelete={onDelete} key={book.id} book={book} />
-    );
-  });
+function BookList({ books, onEdit, onDelete }) {
+  const memoizedBooks = useMemo(() => {
+    return books.map((book) => (
+      <BookShow key={book.id} book={book} onEdit={onEdit} onDelete={onDelete} />
+    ));
+  }, [books, onEdit, onDelete]);
 
-  return <div className="book-list">{renderedBooks}</div>;
+  return <div className="book-list">{memoizedBooks}</div>;
 }
 
 export default BookList;
